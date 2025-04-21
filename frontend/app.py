@@ -52,13 +52,13 @@ def auth_form():
 def mood_entry_form():
     st.subheader("Log a Mood")
     mood_options = {
-        "happy": 0,
-        "sad": 1,
-        "neutral": 2,
-        "angry": 3,
-        "excited": 4
+        "1 - 😔": 0,
+        "2 - 🙁": 1,
+        "3 - 🙂": 2,
+        "4 - 😊": 3,
+        "5 - 😄": 4
     }
-    mood_str = st.selectbox("How do you feel today?", list(mood_options.keys()))
+    mood_str = st.selectbox("How do you feel today? Rate your mood", list(mood_options.keys()))
     description = st.text_area("Describe your mood")
     entry_date = st.date_input("Date", value=date.today())
 
@@ -80,11 +80,11 @@ def view_moods():
     if res.status_code == 200:
         moods = res.json()
         mood_map = {
-            0: "happy",
-            1: "sad",
-            2: "neutral",
-            3: "angry",
-            4: "excited"
+            0: "1 - 😔",
+            1: "2 - 🙁",
+            2: "3 - 🙂",
+            3: "4 - 😊",
+            4: "5 - 😄"
         }
         for m in moods:
             mood_label = mood_map.get(m["mood"], "unknown")
